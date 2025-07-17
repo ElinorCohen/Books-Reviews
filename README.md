@@ -1,14 +1,96 @@
-# Book Reviews Project
-This project is aimed at predicting whether a person liked a book or not based on their book review. We designed and implemented a machine learning model in Python that analyzes book reviews and makes predictions about the reviewer's opinion.
+# 📚 Book Reviews Sentiment Analysis
 
-### Data
-gathered and cleaned data from the website https://www.goodreads.com/ . The dataset contains over 100,000 book reviews, with each review consisting of a textual review and a binary label indicating whether the reviewer liked the book or not.
+This project predicts whether a person **liked a book or not** based on their written review using Natural Language Processing (NLP) and Machine Learning techniques.
 
-### Methodology
-I conducted exploratory data analysis to identify trends and patterns in the data. Then, I engineered relevant features from the textual data using natural language processing techniques. I utilized the AdaBoost machine learning algorithm that gave the best results to train and evaluate the model.
+---
 
-### Results
-My model achieved an accuracy of 57% on the test dataset.
+## 🔍 Objective
 
-### Presentation
-[BooksReviews.pdf](https://github.com/ElinorCohen/Books-Reviews/files/10755324/BooksReviews.pdf)
+Predict user sentiment about books from free-form text reviews.
+
+![Slide - Objective](images/slide-1.png)
+
+---
+
+## 📊 Dataset
+
+- **Source:** [Goodreads](https://www.goodreads.com)
+- **Size:** ~125K reviews after cleaning
+- **Fields collected:**  
+  Book metadata, review text, ratings, user engagement, genres, etc.
+- **Target variable:**  
+  - `1` → Like (rating ≥ 4)  
+  - `0` → Dislike (rating ≤ 3)
+
+![Slide - Data Crawling](images/slide-3.png)
+![Slide - Data Size](images/slide-6.png)
+
+---
+
+## ⚙️ Methodology
+
+### 🧹 Data Cleaning & Preprocessing
+- Dropped NaN & duplicates
+- Normalized numerical columns
+- Grouped genre & cover categories
+- Converted years, extracted metadata
+- Balanced classes (like/dislike)
+
+![Slide - Preprocessing](images/slide-7.png)
+![Slide - Genre Categorization](images/slide-8.png)
+![Slide - Class Balance](images/slide-11.png)
+
+---
+
+### 🧠 NLP Feature Engineering
+
+- Tokenization, POS tagging, lemmatization
+- Stop words removal
+- Positive & negative word lists
+- Word counts, vectorized terms (CountVectorizer)
+- Custom columns: `num_positive`, `num_negative`, etc.
+
+![Slide - NLP Steps](images/slide-12.png)
+![Slide - Common Words](images/slide-18.png)
+![Slide - Word Vectors](images/slide-16.png)
+
+---
+
+### 📈 Exploratory Data Analysis
+
+- Correlation heatmap using Spearman
+- Word sentiment trends
+- Distribution of review types and sentiment
+
+![Slide - Correlation](images/slide-17.png)
+![Slide - Positive Words vs Tags](images/slide-19.png)
+![Slide - Target Balance](images/slide-21.png)
+
+---
+
+## 🤖 Machine Learning Model
+
+- **Model used:** `AdaBoostClassifier`
+- Dropped string and label-leaking columns
+- Trained on 80% of the data, tested on 20%
+- **Accuracy:** 57%
+
+![Slide - Model Process](images/slide-26.png)
+![Slide - Final Score](images/slide-27.png)
+
+---
+
+## 🧪 Technologies Used
+
+- `Python`
+- `Selenium` (data scraping)
+- `Pandas`, `NumPy`
+- `Scikit-learn`
+- `NLTK`
+- `Matplotlib`, `Seaborn`
+
+---
+
+## 📎 Presentation
+
+🎞️ View the full presentation: [BooksReviews.pdf](BooksReviews.pdf)
