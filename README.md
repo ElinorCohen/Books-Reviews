@@ -4,26 +4,79 @@ This project predicts whether a person **liked a book or not** based on their wr
 
 ---
 
-## 🔍 Objective
+## 🎯 Objective & Target Variable
 
-Predict user sentiment about books from free-form text reviews.
+The goal is to predict the sentiment of a book review by classifying it as either "Like" or "Dislike", based on the reviewer’s rating.
 
-![Slide - Objective](images/slide-1.png)
+<div align="center">
+  <img src="images/slide-1.png" alt="Target Mapping" width="500"/>
+  <p><i>Figure 1: Mapping Goodreads ratings to binary labels</i></p>
+</div>
+
+We define the labels as:
+
+| ⭐ Rating | 🔖 Label | Sentiment |
+|----------|---------|-----------|
+| 4 or 5   | 1       | Like      |
+| 1 to 3   | 0       | Dislike   |
+
+Neutral ratings (such as 3) are considered **dislike** for binary classification.
 
 ---
 
-## 📊 Dataset
+## 📚 Data Source
 
-- **Source:** [Goodreads](https://www.goodreads.com)
-- **Size:** ~125K reviews after cleaning
-- **Fields collected:**  
-  Book metadata, review text, ratings, user engagement, genres, etc.
-- **Target variable:**  
-  - `1` → Like (rating ≥ 4)  
-  - `0` → Dislike (rating ≤ 3)
+All data was crawled from [Goodreads](https://www.goodreads.com), one of the largest platforms for book reviews.
 
-![Slide - Data Crawling](images/slide-3.png)
-![Slide - Data Size](images/slide-6.png)
+> ⚠️ This project was conducted strictly for **educational and non-commercial research purposes**. No private or copyrighted content was stored or redistributed.
+
+---
+
+## 🕷️ Crawling Process
+
+To build the dataset, I used **Selenium** to automate browsing and scraping Goodreads reviews.
+
+### Step 1: Authentication
+
+To avoid getting blocked or stuck while scraping, I first logged into Goodreads using automated credentials:
+
+<div align="center">
+  <img src="images/slide-4.png" alt="Automated Login" width="500"/>
+  <p><i>Figure 1: Programmatic login using Selenium</i></p>
+</div>
+
+---
+
+### Step 2: Collecting Book Metadata
+
+After authentication, I navigated through **100 pages**, each listing **100 books**. For every book, I collected:
+
+- Rating & number of ratings  
+- Number of reviews  
+- Genre & cover type  
+- Author’s follower count  
+- Link to the full review
+
+<div align="center">
+  <img src="images/slide-5.png" alt="Book metadata collection" width="500"/>
+  <p><i>Figure 2: Fields collected per book</i></p>
+</div>
+
+---
+
+### Step 3: Visiting Review Pages
+
+Next, I followed each review link to extract the full review text and score. This step yielded a rich dataset that combines metadata with user-generated text.
+
+<div align="center">
+  <img src="images/slide-6.png" alt="Step 3 - Reviews" width="500"/>
+  <p><i>Figure 3: Final review dataset after crawling</i></p>
+</div>
+
+---
+
+By the end of crawling, I had reduced the number of reviews to **150,000**. The final size was **~125,000 entries across 13 features**.
+
 
 ---
 
@@ -36,47 +89,76 @@ Predict user sentiment about books from free-form text reviews.
 - Converted years, extracted metadata
 - Balanced classes (like/dislike)
 
-![Slide - Preprocessing](images/slide-7.png)
-![Slide - Genre Categorization](images/slide-8.png)
-![Slide - Class Balance](images/slide-11.png)
+![Slide - Preprocessing](images/slide-8.png)
+![Slide - Genre Categorization](images/slide-9.png)
+![Slide - Class Balance](images/slide-10.png)
 
 ---
 
 ### 🧠 NLP Feature Engineering
 
-- Tokenization, POS tagging, lemmatization
-- Stop words removal
-- Positive & negative word lists
-- Word counts, vectorized terms (CountVectorizer)
-- Custom columns: `num_positive`, `num_negative`, etc.
+- Tokenization and lemmatization
+- POS tagging (noun, verb, adj, adv)
+- Word counts and stop word removal
+- Positive/negative word lists
+- Custom features: word counts, tag frequencies
 
-![Slide - NLP Steps](images/slide-12.png)
-![Slide - Common Words](images/slide-18.png)
-![Slide - Word Vectors](images/slide-16.png)
+![Slide - NLP Steps](images/slide-13.png)
+![Slide - Common Words](images/slide-14.png)
+![Slide - Word Vectors](images/slide-15.png)
 
 ---
 
-### 📈 Exploratory Data Analysis
+## 📈 Exploratory Data Analysis (EDA)
 
-- Correlation heatmap using Spearman
-- Word sentiment trends
-- Distribution of review types and sentiment
+### Correlation Analysis
+
+Used **Spearman correlation** due to non-normal distribution as shown:
 
 ![Slide - Correlation](images/slide-17.png)
+
+The correlations:
+
+![Slide - Correlation](images/slide-18.png)
 ![Slide - Positive Words vs Tags](images/slide-19.png)
+
+
+### Data Analysis via Visualization
+
+![Slide - Target Values](images/slide-20.png)
 ![Slide - Target Balance](images/slide-21.png)
+![Slide - Target Balance](images/slide-22.png)
+![Slide - Target Balance](images/slide-23.png)
+![Slide - Common Words](images/slide-24.png)
+![Slide - Wordcloud](images/slide-25.png)
+
 
 ---
 
 ## 🤖 Machine Learning Model
 
-- **Model used:** `AdaBoostClassifier`
-- Dropped string and label-leaking columns
-- Trained on 80% of the data, tested on 20%
-- **Accuracy:** 57%
+I used the **AdaBoostClassifier** from `scikit-learn` after comparing multiple options.
 
-![Slide - Model Process](images/slide-26.png)
-![Slide - Final Score](images/slide-27.png)
+- Dropped all text and label-leaking features
+- Final feature set included engineered numeric/textual columns
+- Train/test split: 80% / 20%
+
+![Slide - Model Info](images/slide-27.png)
+![Slide - Steps Before ML](images/slide-28.png)
+![Slide - ML Process](images/slide-29.png)
+
+---
+
+## 📉 Results
+
+The model’s performance on the test set:
+
+- **Accuracy:** 57%  
+- **Precision:** 56.6%  
+- **Recall:** 58.2%  
+- **F1 Score:** 57.4%
+
+![Slide - Results](images/slide-30.png)
 
 ---
 
