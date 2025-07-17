@@ -10,7 +10,6 @@ The goal is to predict the sentiment of a book review by classifying it as eithe
 
 <div align="center">
   <img src="images/slide-1.png" alt="Target Mapping" style="max-width: 100%;"/>
-  <p><i>Figure 1: Mapping Goodreads ratings to binary labels</i></p>
 </div>
 
 We define the labels as:
@@ -42,7 +41,6 @@ To avoid getting blocked or stuck while scraping, I first logged into Goodreads 
 
 <div align="center">
   <img src="images/slide-4.png" alt="Automated Login" style="max-width: 100%;"/>
-  <p><i>Figure 1: Programmatic login using Selenium</i></p>
 </div>
 
 ---
@@ -59,7 +57,6 @@ After authentication, I navigated through **100 pages**, each listing **100 book
 
 <div align="center">
   <img src="images/slide-5.png" alt="Book metadata collection" style="max-width: 100%;"/>
-  <p><i>Figure 2: Fields collected per book</i></p>
 </div>
 
 ---
@@ -70,7 +67,6 @@ Next, I followed each review link to extract the full review text and score. Thi
 
 <div align="center">
   <img src="images/slide-6.png" alt="Step 3 - Reviews" style="max-width: 100%;"/>
-  <p><i>Figure 3: Final review dataset after crawling</i></p>
 </div>
 
 ---
