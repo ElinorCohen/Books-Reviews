@@ -89,9 +89,8 @@ By the end of crawling, I had reduced the number of reviews to **150,000**. The 
 - Converted years, extracted metadata
 - Balanced classes (like/dislike)
 
-![Slide - Preprocessing](images/slide-8.png)
-![Slide - Genre Categorization](images/slide-9.png)
-![Slide - Class Balance](images/slide-10.png)
+![Slide - Genre Grouping, Categorization and Ranges](images/slide-9.png)
+![Slide - Target Columns](images/slide-10.png)
 
 ---
 
@@ -173,6 +172,21 @@ The model’s performance on the test set:
 
 ---
 
+## 🙌 Resources Used
+
+- [Stack Overflow](https://stackoverflow.com)
+- [Scikit-learn](https://scikit-learn.org)
+- [Neptune.ai](https://neptune.ai)
+- [Goodreads](https://www.goodreads.com)
+
+---
+
 ## 📎 Presentation
 
 🎞️ View the full presentation: [BooksReviews.pdf](BooksReviews.pdf)
+
+---
+
+## 🙋 Author
+
+Developed as an independent academic project.
