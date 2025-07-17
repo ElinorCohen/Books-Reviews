@@ -9,7 +9,7 @@ This project predicts whether a person **liked a book or not** based on their wr
 The goal is to predict the sentiment of a book review by classifying it as either "Like" or "Dislike", based on the reviewer’s rating.
 
 <div align="center">
-  <img src="images/slide-1.png" alt="Target Mapping" width="500"/>
+  <img src="images/slide-1.png" alt="Target Mapping" style="max-width: 100%;"/>
   <p><i>Figure 1: Mapping Goodreads ratings to binary labels</i></p>
 </div>
 
@@ -41,7 +41,7 @@ To build the dataset, I used **Selenium** to automate browsing and scraping Good
 To avoid getting blocked or stuck while scraping, I first logged into Goodreads using automated credentials:
 
 <div align="center">
-  <img src="images/slide-4.png" alt="Automated Login" width="500"/>
+  <img src="images/slide-4.png" alt="Automated Login" style="max-width: 100%;"/>
   <p><i>Figure 1: Programmatic login using Selenium</i></p>
 </div>
 
@@ -58,7 +58,7 @@ After authentication, I navigated through **100 pages**, each listing **100 book
 - Link to the full review
 
 <div align="center">
-  <img src="images/slide-5.png" alt="Book metadata collection" width="500"/>
+  <img src="images/slide-5.png" alt="Book metadata collection" style="max-width: 100%;"/>
   <p><i>Figure 2: Fields collected per book</i></p>
 </div>
 
@@ -69,7 +69,7 @@ After authentication, I navigated through **100 pages**, each listing **100 book
 Next, I followed each review link to extract the full review text and score. This step yielded a rich dataset that combines metadata with user-generated text.
 
 <div align="center">
-  <img src="images/slide-6.png" alt="Step 3 - Reviews" width="500"/>
+  <img src="images/slide-6.png" alt="Step 3 - Reviews" style="max-width: 100%;"/>
   <p><i>Figure 3: Final review dataset after crawling</i></p>
 </div>
 
